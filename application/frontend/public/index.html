@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'> -->
+  <link rel="stylesheet" href="static/css/style.css">
+
+  <title>LED COLOR VIEWER</title>
+</head>
+
+<body class="container">
+  <div class="">
+    <div class="illuminanttext"><span id="illuminant">6500</span><span>K</span></div>
+    <div class="powertext"><span id="power">50</span><span>%</span></div>
+    <div class="powertext"><span id="temperature">23.0</span><span>℃</span></div>
+  </div>
+  <!-- <script src="https://unpkg.com/rxjs/bundles/rxjs.umd.min.js"></script> -->
+  <script src="static/js/rxjs.umd.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+
+    const { Observable, fromEvent } = rxjs;
+
+    var socket = io.connect('/api');
+  //   , {
+  //   transports: ['websocket','poling']
+  // });
+    socket.on('connect', ()=>{
+      console.log('socket io connected.');
+    });
+    socket.on('disconnect', ()=>{
+      console.log('socket io disconnected.');
+    });
+    socket.on('status', (message)=>{
+      console.log('message from websocket server', message);
+      var obj = JSON.parse(message);
+      illuminant.textContent = obj.illuminant;
+      power.textContent = obj.power;
+      temperature.textContent = obj.temperature;
+    });
+
+    var illuminant = document.querySelector('#illuminant');
+    var power = document.querySelector('#power');
+    var temperature = document.querySelector('#temperature');
+
+    var on = false;
+    var illuminantValue = 5000;
+    var powerValue = 100;
+    var temperatureValue = 23.0;
+
+  </script>
+</body>
+
+</html>

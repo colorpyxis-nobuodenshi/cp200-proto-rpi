@@ -1,0 +1,11 @@
+[Unit]
+Description = Backend Service
+
+[Service]
+WorkingDirectory=/home/pi/app/backend/
+ExecStart=/usr/bin/python /home/pi/app/backend/main.py
+Restart=always
+Type=simple
+
+[Install]
+WantedBy=multi-user.target

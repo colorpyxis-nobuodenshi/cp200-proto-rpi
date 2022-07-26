@@ -1,0 +1,4 @@
+/etc/lightdm/lightdm.conf
+
+[SeatDefaults]
+xserver-command=X -nocursor

@@ -1,0 +1,4 @@
+/usr/share/plymouth/themes/pix/splash.png
+
+
+sudo apt install pix-plym-splash

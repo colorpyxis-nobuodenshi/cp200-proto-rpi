@@ -1,0 +1,44 @@
+sudo apt install hostapd dnsmasq
+
+sudo nano /etc/dhcpcd.conf
+
+# define static profile
+denyinterfaces wlan0
+
+interface wlan0
+static ip_address=172.24.1.1/24
+static routers=172.24.1.1
+static domain_name_servers=172.24.1.1
+static broadcast 172.24.1.255
+
+sudo nano /etc/hostapd/hostapd.conf
+
+interface=wlan0
+driver=nl80211
+ssid=CP200-0001-AP
+hw_mode=g
+channel=6
+ieee80211n=1
+wmm_enabled=1
+ht_capab=[HT40][SHORT-GI-20][DSSS_CCK-40]
+macaddr_acl=0
+auth_algs=1
+ignore_broadcast_ssid=0
+wpa=2
+wpa_key_mgmt=WPA-PSK
+wpa_passphrase=cp200lcv
+rsn_pairwise=CCMP
+
+sudo nano /etc/default/hostapd 
+
+DAEMON_CONF="/etc/hostapd/hostapd.conf"
+
+sudo nano /etc/dnsmasq.conf
+
+interface=wlan0
+listen-address=172.24.1.1
+server=8.8.8.8
+domain-needed
+bogus-priv
+dhcp-range=172.24.1.50,172.24.1.100,12h
+

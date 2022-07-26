@@ -1,0 +1,11 @@
+[Unit]
+Description = Web Service
+
+[Service]
+WorkingDirectory=/home/pi/app/frontend/
+ExecStart=/usr/local/bin/node /home/pi/app/frontend/index.js
+Restart=always
+Type=simple
+
+[Install]
+WantedBy=multi-user.target

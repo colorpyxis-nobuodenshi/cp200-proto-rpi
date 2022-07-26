@@ -1,0 +1,39 @@
+@font-face{ 
+    font-family: "Roboto"; 
+    src:url("../fonts/Roboto/Roboto-Regular.ttf"); 
+}
+
+*{
+    outline: none;
+    /* pointer-events: none; */
+}
+
+body {
+    font-family: 'Roboto';
+    font-size: 22px;
+    text-align: center;
+}
+
+.logo{
+    position: absolute;
+    left: 60px;
+    top: 20px;
+    width: 283px;
+    height: 59px;
+    background: url("../img/logo.png") no-repeat;
+}
+.productname{
+    position: absolute;
+    left: 430px;
+    top: 430px;
+    width: 360px;
+    height: 29px;
+    font-size: 26px;
+    color: white;
+}
+
+.container{
+    margin: 0 auto;
+    color: white;
+    background-color: #222222;
+}
